@@ -6,48 +6,52 @@
 <title>골목카페 운영 대시보드</title>
 <style>
 :root {
-  --bg: #f6efe6;
-  --surface: #fffaf3;
-  --side: #3b2a20;
-  --side-text: #e9dccd;
-  --accent: #a65d22;
-  --text: #2f2118;
-  --muted: #6f5d4e;
-  --font: system-ui, "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --primary: #0007cd;
+  --primary-glow: #1a26ff;
+  --ink: #ffffff;
+  --body: #a8a8a8;
+  --muted: #888888;
+  --hairline: #222222;
+  --canvas: #0f0f0f;
+  --surface-card: #181818;
+  --surface-elevated: #222222;
+  --radius-md: 8px;
+  --font: "abcDiatype", ui-sans-serif, system-ui, "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
 }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 html, body { height: 100%; margin: 0; }
-body { display: flex; background: var(--bg); color: var(--text); font-family: var(--font); }
+body { display: flex; background: var(--canvas); color: var(--ink); font-family: var(--font); }
 
-.side { width: 220px; flex: none; display: flex; flex-direction: column; gap: 24px; padding: 24px 16px; background: var(--side); color: var(--side-text); }
-.brand { padding: 0 12px; font-size: 20px; font-weight: 700; color: #fff; }
-.brand small { display: block; margin-top: 4px; font-size: 13px; font-weight: 400; color: var(--side-text); }
+.side { width: 240px; flex: none; display: flex; flex-direction: column; gap: 32px; padding: 24px 16px; background: var(--canvas); border-right: 1px solid var(--hairline); }
+.brand { display: flex; align-items: center; gap: 12px; padding: 0 8px; font-size: 16px; font-weight: 600; line-height: 1.4; color: var(--ink); }
+.brand .mark { width: 36px; height: 36px; flex: none; display: grid; place-items: center; border-radius: var(--radius-md); background: var(--primary); font-size: 18px; }
+.brand small { display: block; font-size: 13px; font-weight: 400; line-height: 1.4; color: var(--muted); }
 nav { display: flex; flex-direction: column; gap: 4px; }
-nav a { padding: 12px 14px; border-radius: 10px; font-size: 17px; color: inherit; text-decoration: none; }
-nav a:hover { background: rgba(255, 255, 255, .08); }
-nav a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
-nav a[aria-current="page"] { background: var(--accent); color: #fff; font-weight: 700; }
+nav a { padding: 10px 12px; border-radius: var(--radius-md); font-size: 16px; font-weight: 500; line-height: 1.4; color: var(--body); text-decoration: none; }
+nav a:hover { background: var(--surface-card); color: var(--ink); }
+nav a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+nav a[aria-current="page"] { background: var(--surface-elevated); color: var(--ink); }
 
 main { position: relative; flex: 1; min-width: 0; min-height: 0; }
-iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: var(--surface); }
-.pending { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 24px; text-align: center; }
-.pending h1 { margin: 0; font-size: 28px; }
-.pending p { margin: 0; font-size: 17px; color: var(--muted); }
+iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: var(--canvas); }
+.pending { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 24px; text-align: center; background: radial-gradient(ellipse 45% 40% at 50% 50%, color-mix(in srgb, var(--primary-glow) 28%, transparent), transparent 100%); }
+.pending h1 { margin: 0; font-size: 32px; font-weight: 500; line-height: 1.15; letter-spacing: -0.96px; }
+.pending p { margin: 0; font-size: 16px; line-height: 1.5; color: var(--body); }
 
 @media (max-width: 720px) {
   body { flex-direction: column; }
-  .side { width: auto; flex-direction: row; align-items: center; gap: 4px; padding: 8px; overflow-x: auto; }
-  .brand small { display: none; }
-  .brand { padding: 0 8px; font-size: 16px; white-space: nowrap; }
+  .side { width: auto; flex-direction: row; align-items: center; gap: 4px; padding: 8px; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--hairline); }
+  .brand { padding: 0 8px; white-space: nowrap; }
+  .brand .mark, .brand small { display: none; }
   nav { flex-direction: row; gap: 0; }
-  nav a { padding: 10px; font-size: 16px; white-space: nowrap; }
+  nav a { padding: 10px; white-space: nowrap; }
 }
 </style>
 </head>
 <body>
 <aside class="side">
-  <div class="brand">골목카페<small>운영 대시보드</small></div>
+  <div class="brand"><span class="mark" aria-hidden="true">골</span><span>골목카페<small>운영 대시보드</small></span></div>
   <nav id="nav" aria-label="메뉴"></nav>
 </aside>
 <main>

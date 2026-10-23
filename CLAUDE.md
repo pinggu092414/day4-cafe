@@ -22,7 +22,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File serve.ps1 -Port 8000
 - Each page except home is a separate HTML file loaded into one `<iframe>`.
 - Before loading a page the shell sends `HEAD <file>`. If the file is missing it shows the "준비중" panel instead of the iframe. A new page therefore appears as soon as its file exists; only the `pages` array in `index.html` needs a new entry if a menu item is added. Over `file://` the check is skipped and the iframe is always used.
 - Home has no content yet and shows "준비중". Per `PRD.md`, its cards, 7-day sales chart and AI briefing are meant to live inside `index.html` itself.
-- The shared colors and font are CSS variables in `index.html`'s `:root`. The other pages will be separate documents inside iframes, so they must copy those values (or share a CSS file; that decision is still open in `PRD.md`).
+- The visual design follows `DESIGN-composio.md` (kept in the user's Downloads, not in this repo): a dark theme with canvas `#0f0f0f`, cards stepping up in brightness (`#181818`, `#222222`) instead of using shadows, white and `#a8a8a8` text, one accent `--primary` (`#0007cd`) reserved for the brand mark, primary buttons and the radial glow, 8px radius on buttons and nav items, `#222222` hairlines. The design replaced an earlier Airbnb-based light theme. Only the tokens the shell uses are defined as CSS variables in `index.html`'s `:root`; add more from that document as pages need them. `#0007cd` has too little contrast for text on the dark canvas, so use it only as a fill with white text.
+- The other pages will be separate documents inside iframes, so they must copy those values and set their own dark `body` background (an unstyled page renders white). Sharing a CSS file instead is still an open decision in `PRD.md`.
 
 ## Environment
 
